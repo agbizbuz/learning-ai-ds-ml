@@ -113,3 +113,40 @@ For more detailed learning paths and project ideas, see:
 - **SUMMARY.md** - Comprehensive overview with timeline
 - **resources/README.md** - Curated resource guide
 - **LEARNING_PATH.md** - Structured phase-by-phase learning guide
+
+## 🧠 Karpathy's LLM Skills Advice
+
+Based on Andrej Karpathy's approach to training neural networks, here are key principles for working with LLMs:
+
+1. **Start Simple**: Begin with a basic model (linear classifier, tiny ConvNet) and gradually increase complexity
+2. **Data Understanding**: Spend significant time (hours) examining datasets thoroughly - look for patterns, imbalances, biases
+3. **Build End-to-End Pipeline**: Set up full training + evaluation infrastructure before adding complexity
+4. **Debug Step-by-Step**: 
+   - Fix random seed for reproducibility
+   - Disable data augmentation initially
+   - Verify loss at initialization 
+   - Overfit single batch first
+   - Visualize data just before network input
+5. **Use Adam with 3e-4 learning rate**: Especially in early stages
+6. **Complexify One-at-a-Time**: Add features or data sources individually to monitor performance impact
+7. **Don't Be a Hero**: Use simple, proven architectures from related papers as a starting point
+8. **Regularization Strategy**: 
+   - Get more data first (better than any regularization)
+   - Use data augmentation
+   - Apply early stopping
+   - Use weight decay
+9. **Hyperparameter Tuning**: Use random search instead of grid search (neural nets are more sensitive to some parameters than others)
+10. **Patience & Attention to Detail**: Deep learning requires thoroughness and careful observation, not fast approaches
+
+As Karpathy emphasizes: "Neural net training is a leaky abstraction" and "fails silently", so approach with methodical, cautious methodology.
+
+## 💡 Using AI Assistants Effectively
+
+Based on Karpathy's philosophy about technology adoption and problem-solving:
+
+- **Leverage the power of broad quasi-expertise**: Use AI assistants like Claude to expand your capabilities across domains you're not experts in
+- **Start with the basics**: Before complex tasks, use AI to draft, explore, and prototype solutions
+- **Treat AI as a multiplier, not a replacement**: Use it to enhance your own work rather than outsource it completely
+- **Maintain critical evaluation**: Always validate AI outputs, especially for important tasks - don't rely blindly on AI responses
+- **Use iterative refinement**: Ask for improvements and adjustments to AI outputs rather than expecting perfect first attempts
+- **Focus on the "what" rather than the "how"**: Let AI handle implementation details while you focus on conceptual and strategic decisions
