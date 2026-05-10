@@ -218,7 +218,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-## Deep Learning Patterns (for Course_Work notebook)
+## Deep Learning Patterns (for LLM_Course notebooks)
 
 ```python
 import tensorflow as tf

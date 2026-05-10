@@ -29,7 +29,8 @@ Always use underscores and British English in names:
 
 ### Headers hierarchy:
 
-```markdown
+`$$`markdown
+
 # Title - Document title only
 
 ## Section - Major topics
@@ -39,7 +40,8 @@ Always use underscores and British English in names:
 #### Item - Specific examples/projects
 
 ##### Detail - Fine-grained notes
-```
+
+`$$`
 
 ### Lists and Links:
 
@@ -55,19 +57,20 @@ Always use underscores and British English in names:
 
 ### Tables:
 
-```
+`$$`
 | Header A | Header B |
 |----------|----------|
-| Data     | Data     |
-```
+| Data | Data |
+`$$`
 
 ### Callouts with blockquotes:
 
-```markdown
+`$$`markdown
+
 > 💡 **Tip**: Helpful advice
 > ⚠️ **Warning**: Important caveat
 > 📝 **Note**: Additional context
-```
+> `$$`
 
 ### Emoji usage:
 
@@ -79,20 +82,20 @@ Always use underscores and British English in names:
 
 ### Always specify language:
 
-`````markdown
-```python
+`$$```markdown
+`$$`python
 import numpy as np
-```
+`$$`
 
-```bash
+`$$`bash
 pip install scikit-learn
-```
+`$$`
 
-```toml
+`$$`toml
 [project]
 name = "learning-ai-ds-ml"
-```
-`````
+`$$`
+`$$```
 
 ### Indentation:
 
@@ -120,10 +123,12 @@ name = "learning-ai-ds-ml"
 
 ### Notebook cell comments:
 
-```python
+`$$`python
 """Brief description of what this cell does."""
+
 # More detailed explanation if logic is non-obvious
-```
+
+`$$`
 
 ### Function/variable naming:
 
@@ -136,20 +141,21 @@ name = "learning-ai-ds-ml"
 
 ### Branch names:
 
-```
+`$$`
 feature/add-random-forest-notebook
 fix/fix-broken-dataset-link
 docs/update-learning-path-phase-2
-```
+`$$`
 
 ### Commit message format:
 
-```
+`$$`
 type: short description
 
 Optional longer explanation if needed.
 
 Types:
+
 - feat: New content/notebook
 - fix: Bug fix or broken link repair
 - docs: Documentation updates
@@ -157,16 +163,16 @@ Types:
 - refactor: Code restructure in notebooks
 - test: Adding validation tests
 - chore: Maintenance, deps, config
-```
+  `$$`
 
 ### Examples:
 
-```
+`$$`
 feat: add stacking ensemble notebook with tutorial
 fix: update broken UCI dataset URL in PCA notebook
 docs: revise learning path phase three prerequisites
 style: format all notebooks using ruff
-```
+`$$`
 
 ## File Organization
 
@@ -180,7 +186,7 @@ style: format all notebooks using ruff
 ### Algorithm notebooks go in:
 
 - `simplilearn_ml_python/` - traditional ML algorithms
-- `Course_Work/` - advanced topics and deep learning
+- `LLM_Course/` - advanced topics and deep learning
 
 ### Avoid at all costs:
 
@@ -191,17 +197,17 @@ style: format all notebooks using ruff
 
 ### Naming patterns:
 
-```
+`$$`
 simplilearn_ml_python/
 ├── random_forest.ipynb
 ├── k_means_cluster.ipynb
 ├── support_vector_machine.ipynb
 
-Course_Work/
+LLM_Course/
 ├── NLP_Text.ipynb
 ├── Transfer_Learning.ipynb
 └── ...
-```
+`$$`
 
 ## Validation Checklist
 

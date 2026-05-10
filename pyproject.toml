@@ -1,0 +1,80 @@
+# =============================================================================
+# pyproject.toml — Educational ML/AI Learning Path
+# =============================================================================
+# Setup:  make setup
+# Lint:   make lint
+# Test:   make test-notebooks
+# =============================================================================
+
+[project]
+name = "learning-ai-ds-ml"
+version = "0.2.0"
+description = "An educational learning path for AI, Data Science and Machine Learning"
+requires-python = ">=3.10"
+license = "MIT"
+
+dependencies = [
+  # Core data science stack
+  "numpy>=1.26.0",
+  "pandas>=2.2.0",
+  "matplotlib>=3.9.0",
+  "seaborn>=0.13.0",
+  "scikit-learn>=1.5.0",
+  "scipy>=1.14.0",
+  "jupyter>=1.1.0",
+  "notebook>=7.2.0",
+
+  # Classic ML / Deep Learning
+  "tensorflow>=2.16.0",
+  "xgboost>=2.1.0",
+
+  # Data fetching
+  "kagglehub>=0.3.0",
+  "ucimlrepo>=0.0.7",
+  "vecstack>=0.4.0",
+]
+
+[project.optional-dependencies]
+# LLM and modern AI (GPU recommended)
+llm = [
+  "torch>=2.4.0",
+  "transformers>=4.44.0",
+  "datasets>=3.0.0",
+  "evaluate>=0.4.2",
+  "gensim>=4.3.0",
+  "google-genai>=1.0.0",
+  "langchain>=0.3.0",
+  "langchain-community>=0.3.0",
+  "langchain-core>=0.3.0",
+  "langchain-groq>=0.2.0",
+  "langchain-huggingface>=0.1.0",
+  "langchain-text-splitters>=0.3.0",
+  "sentence-transformers>=3.0.0",
+]
+
+# Development tools (linting, testing)
+dev = ["ruff>=0.8.0", "nbmake>=1.5.0", "papermill>=2.6.0"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 120
+src = ["simplilearn_ml_python", "LLM_Course"]
+
+[tool.ruff.lint]
+# Allow common notebook patterns
+ignore = [
+  "E402", # module-level import not at top of file (notebook cells)
+  "E501", # line too long (notebook output)
+  "F401", # unused imports (notebook scaffolding)
+  "F841", # local variable assigned but never used
+]
+
+[tool.nbmake]
+# Skip notebooks that require API keys at test time
+skip-cell-timeout = 300
+skip-files = [
+  "LLM_Course/LLM_Examples_Gemini.ipynb",
+  "LLM_Course/Fine_Tuning_Course_lab.ipynb",
+  "LLM_Course/continued_pretraining_engineering_demo.ipynb",
+  "LLM_Course/External_Guardrails.ipynb",
+]

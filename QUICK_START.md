@@ -2,20 +2,14 @@
 
 Get started with AI, Data Science & Machine Learning in 5 minutes!
 
-## 🎯 Step 1: Set Up Your Environment
+## 🎯 Step 1: 🚀 Quick Start for the repo
 
-### Prerequisites
-- Python 3.7+ installed
-- Jupyter Notebook or JupyterLab
+ ```bash
+   clone https://github.com/<user>/learning-ai-ds-ml.git
+   cd learning-ai-ds-ml
+   make setup          # creates .venv, installs deps, runs ruff lint
+   make test-notebooks # executes all notebooks with nbmake
 
-### Installation
-```bash
-# Create a virtual environment (recommended)
-python -m venv ml_env
-source ml_env/bin/activate  # On Windows: ml_env\Scripts\activate
-
-# Install essential packages
-pip install numpy pandas matplotlib scikit-learn jupyter seaborn
 ```
 
 ## 📚 Step 2: Start Learning

@@ -5,6 +5,7 @@ This learning path provides a structured approach to mastering Artificial Intell
 ## 🎯 Learning Path Overview
 
 ### Phase 1: Foundations (Beginner)
+
 **Goal:** Build fundamental knowledge in programming, mathematics, and data concepts
 
 1. **Programming Fundamentals**
@@ -23,6 +24,7 @@ This learning path provides a structured approach to mastering Artificial Intell
    - Data cleaning and preprocessing
 
 ### Phase 2: Core Machine Learning (Intermediate)
+
 **Goal:** Learn core ML algorithms and techniques
 
 1. **Supervised Learning**
@@ -42,6 +44,7 @@ This learning path provides a structured approach to mastering Artificial Intell
    - Bias-Variance tradeoff
 
 ### Phase 3: Advanced Topics (Advanced)
+
 **Goal:** Master state-of-the-art techniques and applications
 
 1. **Deep Learning**
@@ -54,7 +57,7 @@ This learning path provides a structured approach to mastering Artificial Intell
    - Text preprocessing and tokenization
    - Word embeddings (Word2Vec, GloVe)
    - Sequence models for text
-   - See: `Course_Work/Embeddings.ipynb` for tokenization examples
+   - See: `LLM_Course/Embeddings.ipynb` for tokenisation examples
 
 3. **Advanced ML Techniques**
    - Hyperparameter tuning
@@ -62,6 +65,7 @@ This learning path provides a structured approach to mastering Artificial Intell
    - Advanced ensemble methods
 
 ### Phase 4: Practical Applications
+
 **Goal:** Apply knowledge to real-world problems
 
 1. **Data Science Pipeline**
@@ -77,16 +81,19 @@ This learning path provides a structured approach to mastering Artificial Intell
 ## 📚 Recommended Resources
 
 ### Books
+
 - "Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow" (Aurélien Géron)
 - "Python for Data Analysis" (Wes McKinney)
 - "Deep Learning" (Ian Goodfellow, Yoshua Bengio, Aaron Courville)
 
 ### Online Courses
+
 - Coursera: "Machine Learning" (Andrew Ng)
 - fast.ai: Practical Deep Learning
 - Udacity: Data Science Nanodegree
 
 ### Tools & Libraries
+
 - **Python Libraries:** NumPy, Pandas, Matplotlib, Seaborn
 - **ML Frameworks:** Scikit-learn, TensorFlow, PyTorch
 - **Data Visualization:** Plotly, Dash
@@ -94,30 +101,33 @@ This learning path provides a structured approach to mastering Artificial Intell
 ## 💻 Practical Projects
 
 ### Beginner Projects
+
 1. **Iris Flower Classification** - Use decision trees to classify iris species
 2. **House Price Prediction** - Linear regression on housing data
 3. **Customer Segmentation** - K-Means clustering on retail data
 
 ### Intermediate Projects
+
 1. **Spam Detection System** - Text classification with Naive Bayes
 2. **Stock Price Prediction** - Time series forecasting
 3. **Image Recognition** - CNN for MNIST digits
 
 ### Advanced Projects
+
 1. **Chatbot Development** - Sequence-to-sequence models
 2. **Recommendation Engine** - Collaborative filtering
 3. **Autonomous Vehicle Simulation** - Reinforcement learning
 
 ## 📅 Study Plan
 
-| Week | Focus Area | Key Topics |
-|------|------------|------------|
-| 1-2 | Python & Math Fundamentals | Programming, Linear Algebra, Stats |
-| 3-4 | Core ML Algorithms | Regression, Classification, Clustering |
-| 5-6 | Model Evaluation & Optimization | Metrics, Cross-validation, Hyperparameter tuning |
-| 7-8 | Deep Learning Basics | Neural Networks, CNNs, RNNs |
-| 9-10 | NLP & Advanced Topics | Text processing, Transformers |
-| 11-12 | Capstone Project | End-to-end ML pipeline |
+| Week  | Focus Area                      | Key Topics                                       |
+| ----- | ------------------------------- | ------------------------------------------------ |
+| 1-2   | Python & Math Fundamentals      | Programming, Linear Algebra, Stats               |
+| 3-4   | Core ML Algorithms              | Regression, Classification, Clustering           |
+| 5-6   | Model Evaluation & Optimization | Metrics, Cross-validation, Hyperparameter tuning |
+| 7-8   | Deep Learning Basics            | Neural Networks, CNNs, RNNs                      |
+| 9-10  | NLP & Advanced Topics           | Text processing, Transformers                    |
+| 11-12 | Capstone Project                | End-to-end ML pipeline                           |
 
 ## 🔧 Repository Structure Guide
 
@@ -128,7 +138,7 @@ learning-ai-ds-ml/
 │   ├── k_means_cluster.ipynb   # Clustering techniques
 │   ├── pca.ipynb               # Dimensionality reduction
 │   └── ...                     # More ML algorithms
-├── Course_Work/                # Advanced topics
+├── LLM_Course/                 # Advanced topics (embeddings, fine-tuning, LLM)
 │   └── Embeddings.ipynb        # NLP and text processing
 ├── reference/                  # Theoretical materials
 │   └── ML_Course_Lecture1.pdf  # Lecture notes

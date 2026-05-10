@@ -169,7 +169,7 @@ sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', fmt='.2f')
 
 ```
 simplilearn_ml_python/algorithm_name.ipynb
-Course_Work/topic_name.ipynb
+LLM_Course/topic_name.ipynb
 ```
 
 ## Common Issues in Colab Notebooks

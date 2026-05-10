@@ -21,7 +21,7 @@ Do not duplicate these docs in tool output.
 | Path                                                                    | Content                                                         | Agent Policy                                                                           |
 | ----------------------------------------------------------------------- | --------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `simplilearn_ml_python/`                                                | Beginner/intermediate Jupyter notebooks (ML algorithms)         | **Editable** — fix imports, update cells, add clarifying markdown                      |
-| `Course_Work/`                                                          | Advanced notebooks (NLP embeddings, fine-tuning, generative AI) | **Editable** — same notebook conventions apply                                         |
+| `LLM_Course/`                                                           | Advanced notebooks (NLP embeddings, fine-tuning, generative AI) | **Editable** — same notebook conventions apply                                         |
 | `reference/`                                                            | PDF lecture notes                                               | **Read-only** — never modify or move                                                   |
 | `resources/`                                                            | Curated links organized by difficulty level                     | **Read-only** — do not add/remove items without explicit user request                  |
 | `resources/beginner/`, `resources/intermediate/`, `resources/advanced/` | Difficulty-bucketed material                                    | **Read-only**                                                                          |
@@ -31,7 +31,8 @@ Do not duplicate these docs in tool output.
 
 ## 3. Python / Environment Conventions
 
-- **Python:** ≥ 3.8
+- **Python:** ≥ 3.12
+- **Managed by uv** — `make setup` to initialise environment, see `pyproject.toml`.
 - **Core packages:** `numpy`, `pandas`, `matplotlib`, `scikit-learn`, `jupyter`, `seaborn`, `tensorflow`
 - **Import aliases:** `import numpy as np`, `import pandas as pd`, `import tensorflow as tf` — follow the existing convention in the repo
 - **No `requirements.txt` exists yet.** If you add a new dependency to a notebook, note it in the relevant markdown cell; do not create a bare `requirements.txt` unless explicitly asked.
@@ -41,7 +42,7 @@ Do not duplicate these docs in tool output.
 
 ## 4. Jupyter Notebook Conventions
 
-All `.ipynb` files in `simplilearn_ml_python/` and `Course_Work/` follow a consistent pattern. Honour it:
+All `.ipynb` files in `simplilearn_ml_python/` and `LLM_Course/` follow a consistent pattern. Honour it:
 
 1. **Title markdown cell** — First cell is a markdown cell with a Colab badge link and a brief description. Always preserve this.
 2. **Explanatory markdown between code blocks** — After every major code block, add a short markdown cell explaining what the code did and its output. This is the pedagogical core of the repo.
@@ -110,7 +111,7 @@ This is an educational repo — there are no unit tests, linters, or CI. Validat
 | `ensemble_wt_keras_and_sklearn.ipynb` | Ensemble with Keras & sklearn            |
 | `tensorflow_exercise.ipynb`           | TensorFlow exercise                      |
 
-### `Course_Work/`
+### `LLM_Course/`
 
 | Notebook                                        | Topic                                   |
 | ----------------------------------------------- | --------------------------------------- |

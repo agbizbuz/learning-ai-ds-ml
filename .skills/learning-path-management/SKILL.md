@@ -34,7 +34,7 @@ learning-ai-ds-ml/
 │   ├── bagging.ipynb
 │   ├── stacking.ipynb
 │   └── ...
-├── Course_Work/             # Advanced/DL notebooks
+├── LLM_Course/              # Advanced/DL notebooks
 │   ├── NLP_Text.ipynb
 │   ├── RNN.ipynb
 │   ├── LSTM.ipynb
@@ -113,7 +113,7 @@ Is it a core ML algorithm?
 │         └── Advanced: Stacking, Stochastic Gradient Descent
 │
 └── No → Is it deep learning / advanced?
-         ├── Yes → Course_Work/
+         ├── Yes → LLM_Course/
          │         ├── Neural networks (RNN, CNN, LSTM)
          │         ├── Generative models (GAN, VAE)
          │         ├── Transfer learning

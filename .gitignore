@@ -1,1 +1,48 @@
 .pi-lens/
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+build/
+*.egg
+
+# ---- Virtual Environment ----
+.venv/
+venv/
+env/
+
+# ---- uv cache ----
+.uv/
+
+# ---- Jupyter ----
+.ipynb_checkpoints/
+*.checkpoint
+
+# ---- IDE ----
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ---- macOS ----
+.DS_Store
+
+# ---- Data / Models (never commit datasets) ----
+*.csv
+*.parquet
+*.h5
+*.pt
+*.pth
+*.bin
+checkpoints/
+data/
+models/
+
+# ---- Kaggle ----
+kaggle.json
+
+# ---- Notebook outputs (optional: uncomment if you want outputs in version control) ----
+# *.ipynb_checkpoints

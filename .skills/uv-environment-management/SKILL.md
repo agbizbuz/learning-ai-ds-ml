@@ -47,7 +47,7 @@ uv add numpy pandas matplotlib seaborn
 # ML frameworks
 uv add scikit-learn
 
-# Deep learning (for Course_Work notebooks)
+# Deep learning (for LLM_Course notebooks)
 uv add tensorflow
 
 # Jupyter support

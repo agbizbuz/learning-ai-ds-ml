@@ -38,7 +38,7 @@ The repository should have this in `pyproject.toml`:
 # ML notebooks are educational - allow longer lines for readability
 line-length = 100
 target-version = "py310"
-src = ["simplilearn_ml_python", "Course_Work"]
+src = ["simplilearn_ml_python", "LLM_Course"]
 
 # Exclude common non-source paths
 exclude = [
@@ -96,7 +96,7 @@ docstring-code-format = true
 | Command                             | Purpose                       |
 | ----------------------------------- | ----------------------------- |
 | `ruff check simplilearn_ml_python/` | Lint ML algorithm notebooks   |
-| `ruff check Course_Work/`           | Lint advanced topic notebooks |
+| `ruff check LLM_Course/`            | Lint advanced topic notebooks |
 | `ruff format --check .`             | Check if code is formatted    |
 | `ruff check --select=I .`           | Just check import ordering    |
 | `ruff check --no-fix .`             | Show issues without fixing    |

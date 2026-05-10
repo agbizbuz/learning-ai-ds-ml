@@ -5,13 +5,17 @@ For learning Artificial Intelligence, Data Science and Machine Learning with str
 ## 📚 Comprehensive Learning Resources
 
 ### 1. [LEARNING_PATH.md](LEARNING_PATH.md)
+
 A structured learning path organized by difficulty level (Beginner → Intermediate → Advanced) with theoretical concepts and practical guidance.
 
 ### 2. [PROJECT_ROADMAP.md](PROJECT_ROADMAP.md)
+
 Detailed project ideas with datasets, implementation steps, and evaluation metrics for each difficulty level.
 
 ### 3. [resources/](resources/)
+
 Curated learning resources organized by difficulty:
+
 - **Beginner:** Fundamentals and basic algorithms
 - **Intermediate:** Advanced techniques and real-world applications
 - **Advanced:** State-of-the-art research and production systems
@@ -28,7 +32,7 @@ learning-ai-ds-ml/
 │   ├── intermediate/         # Intermediate resources
 │   └── advanced/             # Advanced resources
 ├── simplilearn_ml_python/    # Core ML algorithms (Random Forest, K-Means, etc.)
-├── Course_Work/              # Advanced topics (Embeddings, NLP)
+├── LLM_Course/               # Advanced topics (Embeddings, NLP, fine-tuning)
 ├── reference/                # Theoretical materials
 └── README.md                 # This guide
 ```
@@ -49,13 +53,13 @@ learning-ai-ds-ml/
 
 ## 📅 Study Plan
 
-| Week | Focus Area | Key Topics |
-|------|------------|------------|
-| 1-2 | Python & Math Fundamentals | Programming, Linear Algebra, Stats |
-| 3-4 | Core ML Algorithms | Regression, Classification, Clustering |
-| 5-6 | Model Evaluation & Optimization | Metrics, Cross-validation, Hyperparameter tuning |
-| 7-8 | Deep Learning Basics | Neural Networks, CNNs, RNNs |
-| 9-10 | NLP & Advanced Topics | Text processing, Transformers |
-| 11-12 | Capstone Project | End-to-end ML pipeline |
+| Week  | Focus Area                      | Key Topics                                       |
+| ----- | ------------------------------- | ------------------------------------------------ |
+| 1-2   | Python & Math Fundamentals      | Programming, Linear Algebra, Stats               |
+| 3-4   | Core ML Algorithms              | Regression, Classification, Clustering           |
+| 5-6   | Model Evaluation & Optimization | Metrics, Cross-validation, Hyperparameter tuning |
+| 7-8   | Deep Learning Basics            | Neural Networks, CNNs, RNNs                      |
+| 9-10  | NLP & Advanced Topics           | Text processing, Transformers                    |
+| 11-12 | Capstone Project                | End-to-end ML pipeline                           |
 
 Happy learning! 🎓🤖

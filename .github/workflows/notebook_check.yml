@@ -1,0 +1,48 @@
+# Notebook CI — validates all Jupyter notebooks execute cleanly
+
+name: Notebook Validation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    # nightly run at 03:00 UTC
+    - cron: "0 3 * * *"
+
+jobs:
+  validate-notebooks:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        run: pipx install uv
+
+      - name: Set up Python ${{ matrix.python-version }}
+        run: uv python install ${{ matrix.python-version }}
+
+      - name: Cache uv environment
+        id: cache-venv
+        uses: actions/cache@v4
+        with:
+          path: .venv
+          key: ${{ runner.os }}-venv-${{ hashFiles('pyproject.toml', 'uv.lock') }}
+
+      - name: Install dependencies
+        if: steps.cache-venv.outputs.cache-hit != 'true'
+        run: |
+          uv sync --extra dev
+
+      - name: Lint notebooks with ruff
+        run: |
+          uv run ruff check simplilearn_ml_python/ LLM_Course/ --output-format=concise
+
+      - name: Execute all notebooks (nbmake)
+        run: |
+          uv run nbmake simplilearn_ml_python/ LLM_Course/
