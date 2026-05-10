@@ -60,8 +60,8 @@ lint-fix:
 
 test-notebooks:
 	@echo "Validating all notebooks can execute..."
-	$(UV) run nbmake simplilearn_ml_python/ LLM_Course/ 2>/dev/null || \
-	$(PYTHON) -m nbmake simplilearn_ml_python/ LLM_Course/
+	$(UV) run pytest --nbmake simplilearn_ml_python/ LLM_Course/ 2>/dev/null
+# 	$(PYTHON) -m nbmake simplilearn_ml_python/ LLM_Course/
 
 # -- Cleanup --------------------------------------------------------------------
 

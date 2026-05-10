@@ -45,4 +45,4 @@ jobs:
 
       - name: Execute all notebooks (nbmake)
         run: |
-          uv run nbmake simplilearn_ml_python/ LLM_Course/
+          uv run pytest --nbmake simplilearn_ml_python/ LLM_Course/
