@@ -60,8 +60,8 @@ lint-fix:
 
 test-notebooks:
 	@echo "Validating all notebooks can execute..."
-	$(UV) run pytest --nbmake simplilearn_ml_python/ LLM_Course/ 2>/dev/null
-# 	$(PYTHON) -m nbmake simplilearn_ml_python/ LLM_Course/
+	@echo "(Notebooks requiring API keys or GPU are automatically skipped by conftest.py)"
+	$(UV) run pytest
 
 # -- Cleanup --------------------------------------------------------------------
 

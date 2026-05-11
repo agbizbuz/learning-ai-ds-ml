@@ -69,12 +69,11 @@ ignore = [
   "F841", # local variable assigned but never used
 ]
 
-[tool.nbmake]
-# Skip notebooks that require API keys at test time
-skip-cell-timeout = 300
-skip-files = [
-  "LLM_Course/LLM_Examples_Gemini.ipynb",
-  "LLM_Course/Fine_Tuning_Course_lab.ipynb",
-  "LLM_Course/continued_pretraining_engineering_demo.ipynb",
-  "LLM_Course/External_Guardrails.ipynb",
-]
+# for testing notebooks with nbmake
+# nbmake is a pytest plugin — it reads config via [tool.pytest.ini_options]
+# NOT via [tool.nbmake] (that section is silently ignored by nbmake)
+[tool.pytest.ini_options]
+addopts = ["--nbmake", "--nbmake-timeout=300", "-v"]
+testpaths = ["simplilearn_ml_python", "LLM_Course"]
+
+# Notebooks that need API keys or GPU training are excluded in conftest.py

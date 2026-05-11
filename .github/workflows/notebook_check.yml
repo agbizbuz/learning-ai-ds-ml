@@ -45,4 +45,5 @@ jobs:
 
       - name: Execute all notebooks (nbmake)
         run: |
-          uv run pytest --nbmake simplilearn_ml_python/ LLM_Course/
+          # pytest with nbmake plugin respects conftest.py skip list & timeouts
+          uv run pytest
