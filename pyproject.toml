@@ -74,6 +74,8 @@ ignore = [
 # NOT via [tool.nbmake] (that section is silently ignored by nbmake)
 [tool.pytest.ini_options]
 addopts = ["--nbmake", "--nbmake-timeout=300", "-v"]
+# FIXME - re-introduce LL_Course for colab non dependent notebooks
 testpaths = ["simplilearn_ml_python", "LLM_Course"]
+# testpaths = ["simplilearn_ml_python"]
 
 # Notebooks that need API keys or GPU training are excluded in conftest.py

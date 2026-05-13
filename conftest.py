@@ -13,4 +13,7 @@ collect_ignore = [
     # Fine-tuning / continued pre-training (GPU + large models)
     str(pathlib.Path("LLM_Course").resolve() / "Fine_Tuning_Course_lab.ipynb"),
     str(pathlib.Path("LLM_Course").resolve() / "continued_pretraining_engineering_demo.ipynb"),
+    # requires google colab
+    str(pathlib.Path("LLM_Course").resolve() / "Cust_Feedback_Summeriser.ipynb"),
+    str(pathlib.Path("LLM_Course").resolve() / "RAG_Example.ipynb"),
 ]
