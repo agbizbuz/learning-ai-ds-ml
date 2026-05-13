@@ -37,7 +37,7 @@ jobs:
       - name: Install dependencies
         if: steps.cache-venv.outputs.cache-hit != 'true'
         run: |
-          uv sync --optional llm --extra dev
+          uv sync --all-extras
 
       - name: Lint notebooks with ruff
         run: |
