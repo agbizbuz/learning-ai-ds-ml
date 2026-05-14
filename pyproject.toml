@@ -32,6 +32,7 @@ dependencies = [
   "kagglehub>=0.3.0",
   "ucimlrepo>=0.0.7",
   "vecstack>=0.4.0",
+  "scikeras>=0.13.0",
 ]
 
 [project.optional-dependencies]
@@ -41,6 +42,7 @@ llm = [
   "transformers>=4.44.0",
   "datasets>=3.0.0",
   "evaluate>=0.4.2",
+  "rouge_score>=0.1.2",
   "gensim>=4.3.0",
   "google-genai>=1.0.0",
   "langchain>=0.3.0",

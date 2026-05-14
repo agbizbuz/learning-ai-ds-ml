@@ -16,4 +16,6 @@ collect_ignore = [
     # requires google colab
     str(pathlib.Path("LLM_Course").resolve() / "Cust_Feedback_Summeriser.ipynb"),
     str(pathlib.Path("LLM_Course").resolve() / "RAG_Example.ipynb"),
+    # this notebook has errors
+    str(pathlib.Path("simplilearn_ml_python").resolve() / "ensemble_wt_keras_and_sklearn.ipynb"),
 ]
