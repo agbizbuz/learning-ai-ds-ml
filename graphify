@@ -1,0 +1,229 @@
+#!/usr/bin/env python3
+"""
+graphify — Visualise your ML learning path as a knowledge graph.
+
+Usage:
+    ./graphify              # Generate the default graph (output: graph.png)
+    ./graphify -o fig.svg   # Save as SVG
+    ./graphify -o fig.png   # Save as PNG
+    ./graphify --compact     # Tighter layout
+    ./graphify --layers      # Explicit layer grouping
+    ./graphify --help        # Show this help
+
+Dependencies: matplotlib, numpy (already in this project).
+"""
+
+from __future__ import annotations
+
+import argparse
+import math
+from pathlib import Path
+
+# ── Data model ────────────────────────────────────────
+
+ALGORITHMS = [
+    # (name, phase, category, notes)
+    ("Linear Regression",         1, "Regression",      "Predicts continuous output"),
+    ("Polynomial Regression",     1, "Regression",      "Non-linear regression via feature expansion"),
+    ("Logistic Regression",       1, "Classification",  "Binary / multi-class classification"),
+    ("K-Nearest Neighbours (KNN)", 2, "Classification", "Instance-based lazy learner"),
+    ("Naive Bayes",               2, "Classification",  "Probabilistic classifier — great for text"),
+    ("Support Vector Machine (SVM)", 2, "Classification","Max-margin hyperplane classifier"),
+    ("Decision Tree",             2, "Classification",  "Split-based tree learner"),
+    ("Random Forest",             2, "Ensemble",        "Bagged decision trees"),
+    ("Bagging",                   2, "Ensemble",        "Bootstrap aggregating"),
+    ("Boosting",                  2, "Ensemble",        "Sequential ensemble (AdaBoost, GBM)"),
+    ("Stacking",                  3, "Ensemble",        "Meta-learner blends base estimators"),
+    ("K-Means Clustering",        2, "Clustering",      "Partitional centroid-based clustering"),
+    ("Hierarchical Clustering",   2, "Clustering",      "Tree-based agglomerative / divisive"),
+    ("BIRCH",                     3, "Clustering",      "Balanced iterative reducing clustering"),
+    ("PCA (Dimensionality)",      2, "Dimensionality",  "Variance-preserving projection"),
+    ("SVD (Dimensionality)",      2, "Dimensionality",  "Matrix factorisation"),
+    ("STOIC Gradient Descent",    1, "Optimisation",    "Stochastic gradient optimiser"),
+    ("CNN",                       3, "Deep Learning",   "Convolutional network for images"),
+    ("RNN / LSTM",                3, "Deep Learning",   "Recurrent network for sequences"),
+    ("Transformer",               3, "Deep Learning",   "Attention-based architecture"),
+    ("BERT / Embeddings",         3, "NLP",             "Pre-trained contextual embeddings"),
+    ("RL / DQN",                  3, "Reinforcement",   "Reward-driven agent learning"),
+    ("Collaborative Filtering",   3, "Recommendation",  "Matrix factorisation recommender"),
+]
+
+# Relationships: (subject, object, edge_label)
+RELATIONSHIPS = [
+    ("Polynomial Regression",      "Linear Regression",      "extension"),
+    ("Logistic Regression",        "Linear Regression",      "classification variant"),
+    ("Random Forest",              "Decision Tree",          "ensemble of"),
+    ("Bagging",                    "Random Forest",          "technique used by"),
+    ("Boosting",                   "Bagging",                "alternative to"),
+    ("Stacking",                   "Boosting",               "alternative to"),
+    ("Decision Tree",              "SVM",                    "alternative to"),
+    ("Naive Bayes",                "KNN",                    "alternative to"),
+    ("K-Means Clustering",         "Hierarchical Clustering", "alternative to"),
+    ("BIRCH",                      "K-Means Clustering",     "scaling up"),
+    ("PCA (Dimensionality)",       "SVD (Dimensionality)",   "uses"),
+    ("CNN",                        "Deep Learning",          "specialises in"),
+    ("RNN / LSTM",                 "Deep Learning",          "specialises in"),
+    ("Transformer",                "Deep Learning",          "specialises in"),
+    ("BERT / Embeddings",          "Transformer",            "applies"),
+    ("RL / DQN",                   "Deep Learning",          "applies"),
+    ("Collaborative Filtering",    "SVD (Dimensionality)",   "uses"),
+    ("Deep Learning",              "STOIC Gradient Descent", "optimises with"),
+    ("STOIC Gradient Descent",    "Linear Regression",      "optimiser for"),
+]
+
+PHASE_LABELS = {0: "Foundations", 1: "Core ML", 2: "Core ML", 3: "Advanced Topics"}
+PHASE_COLORS = {0: "#cccccc", 1: "#4e79a7", 2: "#b5651d", 3: "#e15759"}
+
+
+def _node_phase(name: str) -> int:
+    for n, phase, _, _ in ALGORITHMS:
+        if n == name:
+            return phase
+    return 0
+
+
+# ── Force-directed layout ─────────────────────────────
+
+def _compute_layout(nodes: list[str], edges: list[tuple[str, str]],
+                    iterations: int = 300) -> dict[str, tuple[float, float]]:
+    import numpy as np
+
+    node_set = set(nodes)
+    rng = np.random.default_rng(42)  # reproducible
+    pos = {n: (rng.uniform(-50, 50), rng.uniform(-50, 50)) for n in nodes}
+    k = math.sqrt(10000.0 / len(nodes))
+
+    for it in range(iterations):
+        temp = max(0.1, 1.0 - it / iterations)
+        force = {n: (0.0, 0.0) for n in nodes}
+
+        # Repulsive
+        for i in range(len(nodes)):
+            for j in range(i + 1, len(nodes)):
+                n1, n2 = nodes[i], nodes[j]
+                dx = pos[n2][0] - pos[n1][0]
+                dy = pos[n2][1] - pos[n1][1]
+                d = math.hypot(dx, dy) or 0.01
+                f = (k * k) / d
+                force[n1] = (force[n1][0] - f * dx / d, force[n1][1] - f * dy / d)
+                force[n2] = (force[n2][0] + f * dx / d, force[n2][1] + f * dy / d)
+
+        # Attractive
+        for a, b in edges:
+            if a not in node_set or b not in node_set:
+                continue
+            dx = pos[b][0] - pos[a][0]
+            dy = pos[b][1] - pos[a][1]
+            d = math.hypot(dx, dy) or 0.01
+            f = (d * d) / k
+            force[a] = (force[a][0] + f * dx / d, force[a][1] + f * dy / d)
+            force[b] = (force[b][0] - f * dx / d, force[b][1] - f * dy / d)
+
+        # Gravity
+        for n in nodes:
+            force[n] = (force[n][0] - pos[n][0] * 0.01, force[n][1] - pos[n][1] * 0.01)
+
+        for n in nodes:
+            fx, fy = force[n]
+            fl = math.hypot(fx, fy) or 0.01
+            step = min(fl, temp) / fl
+            pos[n] = (pos[n][0] + fx * step, pos[n][1] + fy * step)
+
+    return pos
+
+
+# ── Rendering ─────────────────────────────────────────
+
+def _render(output_path: Path, compact: bool = False) -> None:
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    import matplotlib.patches as mpatches
+    import numpy as np
+
+    nodes = [a[0] for a in ALGORITHMS]
+    node_set = set(nodes)
+    valid_edges = [(a, b) for a, b, _ in RELATIONSHIPS if a in node_set and b in node_set]
+    pos = _compute_layout(nodes, valid_edges)
+
+    fig, ax = plt.subplots(figsize=(16, 12))
+    fig.set_facecolor("#0e1117")
+    ax.set_facecolor("#0e1117")
+
+    # Edges
+    for a, b, _ in RELATIONSHIPS:
+        if a not in pos or b not in pos:
+            continue
+        ax.plot([pos[a][0], pos[b][0]], [pos[a][1], pos[b][1]],
+                color="#555577", lw=1.2, alpha=0.5, zorder=1)
+
+    # Nodes
+    for node in nodes:
+        phase = _node_phase(node)
+        x, y = pos[node]
+        color = PHASE_COLORS[phase]
+        ax.text(x, y, node, ha="center", va="center", fontsize=10, color="#ffffff",
+                bbox=dict(boxstyle="round,pad=0.5", fc=color, alpha=0.85,
+                          ec="white", lw=1), zorder=5)
+
+    ax.set_xlim(-150, 150)
+    ax.set_ylim(-150, 150)
+    ax.set_aspect("equal")
+    ax.axis("off")
+
+    fig.suptitle("ML Learning Path — Knowledge Graph", fontsize=20, fontweight="bold",
+                 color="white", y=0.97)
+
+    legend_patches = [mpatches.Patch(color=c, label=l)
+                      for l, c in PHASE_COLORS.items()]
+    ax.legend(handles=legend_patches, loc="lower left", fontsize=10,
+              facecolor="#1a1f2e", edgecolor="white", framealpha=0.9,
+              title="Phases", title_fontsize=11, labelcolor="white", borderpad=1.0)
+
+    plt.tight_layout(rect=[0, 0, 1, 0.95])
+    plt.savefig(str(output_path), dpi=200, bbox_inches="tight",
+                facecolor=fig.get_facecolor())
+    plt.close(fig)
+
+
+# ── CLI ───────────────────────────────────────────────
+
+def main() -> None:
+    p = argparse.ArgumentParser(
+        description="Graphify your ML learning path into a visual knowledge graph.",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=(
+            "Examples:\n"
+            "  ./graphify                      Generate → graph.png\n"
+            "  ./graphify -o knowledge.svg     Save as SVG\n"
+            "  ./graphify --compact            Tighter layout\n"
+            "  ./graphify --preview            Open in viewer\n"
+        ),
+    )
+    p.add_argument("-o", "--output", default="graph.png")
+    p.add_argument("--compact", action="store_true")
+    p.add_argument("--preview", action="store_true")
+    args = p.parse_args()
+
+    out = Path(args.output)
+    if out.suffix not in (".png", ".svg", ".pdf", ".jpg"):
+        out = Path(str(out) + ".png")
+
+    _render(out, compact=args.compact)
+    print(f"✅ Graph saved → {out.resolve()}")
+
+    if args.preview:
+        import platform
+        if platform.system() == "Darwin":
+            import subprocess
+            subprocess.run(["open", str(out)], check=False)
+        elif platform.system() == "Windows":
+            import subprocess
+            subprocess.run(["start", str(out)], shell=True, check=False)
+        else:
+            import subprocess
+            subprocess.run(["xdg-open", str(out)], check=False)
+
+
+if __name__ == "__main__":
+    main()
